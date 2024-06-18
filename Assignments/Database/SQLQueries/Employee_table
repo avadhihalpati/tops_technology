@@ -1,0 +1,169 @@
+2.	Create table given below: Employee and IncentiveTable
+
+MySQL> create table Employee(Employee int auto_increment primary key,First_name varchar(150),Last_name varchar(150),Salary int,Joining_date date,Departme
+nt varchar(50));
+Query OK, 0 rows affected (0.82 sec)
+MySQL> desc Employee;
+
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| Employee_id  | int          | NO   | PRI | NULL    | auto_increment |
+| First_name   | varchar(150) | YES  |     | NULL    |                |
+| Last_name    | varchar(150) | YES  |     | NULL    |                |
+| Salary       | int          | YES  |     | NULL    |                |
+| Joining_date | date         | YES  |     | NULL    |                |
+| Department   | varchar(50)  | YES  |     | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into Employee values(1,"jhon","abraham",1000000,"2013-01-01 12:00:00","banking");
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into employee values(2,"michael","clarke",8000000,"2013-01-01 12:00:00","insurance");
+Query OK, 1 row affected (0.16 sec)
+
+mysql> insert into employee values(3,"roy","thomas",7000000,"2013-02-01 12:00:00","banking");
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into employee values(4,"tom","jose",600000,"2013-02-01 12.00.00","Insurance");
+Query OK, 1 row affected, 1 warning (0.29 sec)
+
+mysql> insert into employee values(5,"jerry","pinto",650000,"2013-02-01 12:00:00","insurance");
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into employee values(6,"philio","mathew",750000,"2013-01-01 12:00:00","services");
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into employee values(7,"testname1",123,650000,"2013-01-01 12:00:00","services");
+Query OK, 1 row affected (0.15 sec)
+
+mysql> insert into employee values(8,"testname2","lname%",600000,"2013-02-01 12:00:00","insurance");
+Query OK, 1 row affected (0.08 sec)
+
+mysql> desc incentive;
++-----------------+------+------+-----+---------+-------+
+| Field           | Type | Null | Key | Default | Extra |
++-----------------+------+------+-----+---------+-------+
+| Employee_ref_id | int  | YES  | MUL | NULL    |       |
+| incentive_date  | date | YES  |     | NULL    |       |
+| incentive_amout | int  | YES  |     | NULL    |       |
+3 rows in set (0.00 sec)
+
+mysql> insert into incentive values (1,"2013-02-01",5000);
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into incentive values (3,"2013-02-01",4000);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into incentive values (1,"2013-01-01",4500);
+Query OK, 1 row affected (0.17 sec)
+
+
+mysql> insert into incentive values (2,"2013-01-01",3500);
+Query OK, 1 row affected (0.05 sec)
+
+a. Get First_Name from employee table using Tom name “Employee Name”.
+
+ mysql> select * from employee where First_name = "tom";
++-------------+------------+-----------+--------+---------------------+------------+
+| Employee_id | First_name | Last_name | Salary | joining_date        | Department |
++-------------+------------+-----------+--------+---------------------+------------+
+|           4 | tom        | jose      | 600000 | 2013-02-01 12:00:00 | Insurance  |
++-------------+------------+-----------+--------+---------------------+------------+
+
+b. Get FIRST_NAME, Joining Date, and Salary from employee table. 
+
+mysql> select First_name, joining_date, Salary from employee;
++------------+---------------------+---------+
+| First_name | joining_date        | Salary  |
++------------+---------------------+---------+
+| jhon       | 2013-01-01 12:00:00 | 1000000 |
+| michael    | 2013-01-01 12:00:00 | 8000000 |
+| roy        | 2013-02-01 12:00:00 | 7000000 |
+| tom        | 2013-02-01 12:00:00 |  600000 |
+| jerry      | 2013-02-01 12:00:00 |  650000 |
+| philio     | 2013-01-01 12:00:00 |  750000 |
+| testname1  | 2013-01-01 12:00:00 |  650000 |
+| testname2  | 2013-02-01 12:00:00 |  600000 |
++------------+---------------------+---------+
+8 rows in set (0.00 sec)
+
+c. Get all employee details from the employee table order by First_Name
+Ascending and Salary descending?
+
+mysql> select * from employee order by First_name asc;
++-------------+------------+-----------+---------+---------------------+------------+
+| Employee_id | First_name | Last_name | Salary  | joining_date        | Department |
++-------------+------------+-----------+---------+---------------------+------------+
+|           5 | jerry      | pinto     |  650000 | 2013-02-01 12:00:00 | insurance  |
+|           1 | jhon       | abraham   | 1000000 | 2013-01-01 12:00:00 | banking    |
+|           2 | michael    | clarke    | 8000000 | 2013-01-01 12:00:00 | insurance  |
+|           6 | philio     | mathew    |  750000 | 2013-01-01 12:00:00 | services   |
+|           3 | roy        | thomas    | 7000000 | 2013-02-01 12:00:00 | banking    |
+|           7 | testname1  | 123       |  650000 | 2013-01-01 12:00:00 | services   |
+|           8 | testname2  | lname%    |  600000 | 2013-02-01 12:00:00 | insurance  |
+|           4 | tom        | jose      |  600000 | 2013-02-01 12:00:00 | Insurance  |
++-------------+------------+-----------+---------+---------------------+------------+
+8 rows in set (0.02 sec)
+
+mysql> select * from employee order by Salary desc;
++-------------+------------+-----------+---------+---------------------+------------+
+| Employee_id | First_name | Last_name | Salary  | joining_date        | Department |
++-------------+------------+-----------+---------+---------------------+------------+
+|           2 | michael    | clarke    | 8000000 | 2013-01-01 12:00:00 | insurance  |
+|           3 | roy        | thomas    | 7000000 | 2013-02-01 12:00:00 | banking    |
+|           1 | jhon       | abraham   | 1000000 | 2013-01-01 12:00:00 | banking    |
+|           6 | philio     | mathew    |  750000 | 2013-01-01 12:00:00 | services   |
+|           5 | jerry      | pinto     |  650000 | 2013-02-01 12:00:00 | insurance  |
+|           7 | testname1  | 123       |  650000 | 2013-01-01 12:00:00 | services   |
+|           4 | tom        | jose      |  600000 | 2013-02-01 12:00:00 | Insurance  |
+|           8 | testname2  | lname%    |  600000 | 2013-02-01 12:00:00 | insurance  |
++-------------+------------+-----------+---------+---------------------+------------+
+8 rows in set (0.00 sec)
+
+d. Get employee details from employee table whose first name contains ‘J’.
+
+mysql> select * from employee where First_name like 'j%';
++-------------+------------+-----------+---------+---------------------+------------+
+| Employee_id | First_name | Last_name | Salary  | joining_date        | Department |
++-------------+------------+-----------+---------+---------------------+------------+
+|           1 | jhon       | abraham   | 1000000 | 2013-01-01 12:00:00 | banking    |
+|           5 | jerry      | pinto     |  650000 | 2013-02-01 12:00:00 | insurance  |
++-------------+------------+-----------+---------+---------------------+------------+
+2 rows in set (0.03 sec)
+
+e. Get department wise maximum salary from employee table order by salary
+ascending?
+
+mysql> select Department,max(Salary) from employee group by Department order by max(Salary) asc;
++------------+-------------+
+| Department | max(Salary) |
++------------+-------------+
+| services   |      750000 |
+| banking    |     7000000 |
+| insurance  |     8000000 |
++------------+-------------+
+3 rows in set (0.00 sec)
+
+f. Select first_name, incentive amount from employee and incentives table for
+those employees who have incentives and incentive amount greater than 3000.
+
+mysql> select employee.First_name,incentive_amout from employee INNER JOIN incentive ON employee.Employee_id=incentive.Employee_ref_id where incentive_amout > 3000;
++------------+-----------------+
+| First_name | incentive_amout |
++------------+-----------------+
+| jhon       |            5000 |
+| roy        |            4000 |
+| jhon       |            4500 |
+| michael    |            3500 |
++------------+-----------------+
+4 rows in set (0.00 sec)
+
+10.Create After Insert trigger on Employee table which insert records in viewtable
+DELIMITER //
+mysql> Create Trigger T1
+    -> AFTER INSERT ON employee_ FOR EACH ROW
+    -> BEGIN
+    -> INSERT INTO employee_detail VALUES (id,message());
+    -> END//

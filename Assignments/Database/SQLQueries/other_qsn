@@ -1,0 +1,34 @@
+19. From the following table, write a SQL query to find orders that are delivered by a salesperson with ID. 5001. Return ord_no, ord_date, purch_amt.
+
+Select * from orders;
+
+SELECT ord_no, ord_date, purch_amt FROM orders WHERE salesman_id = 5001;
+ 
+
+20. From the following table, write a SQL query to select a range of products whose price is in the range Rs.200 to Rs.600. Begin and end values are included. Return pro_id, pro_name, pro_price, and pro_com.
+Select * from item_mast;
+ 
+
+SELECT PRO_ID, PRO_NAME, PRO_PRICE, PRO_COMFROM item_mast WHERE PRO_PRICE BETWEEN 200.00 AND 600.00;
+
+ 
+
+21.From the following table, write a SQL query to calculate the average price for a manufacturer code of 16. Return avg.
+
+SELECT AVG(PRO_PRICE) AS avg_price FROM item_mast WHERE PRO_COM =16;
+ 
+
+22. From the following table, write a SQL query to display the pro_name as 'Item Name' and pro_priceas 'Price in Rs.'
+
+SELECT PRO_NAME AS 'Item Name', CONCAT('Rs.', PRO_PRICE) AS 'Price in Rs.'FROM item_mast;
+ 
+
+23. From the following table, write a SQL query to find the items whose prices are higher than or equal to $250. Order the result by product price in descending, then product name in ascending. Return pro_name and pro_price.
+
+SELECT pro_name, pro_price FROM item_mast WHERE pro_price >= 250 ORDER BY pro_price DESC, pro_name ASC;
+ 
+
+
+24. From the following table, write a SQL query to calculate average price of the items for each company. Return average price and company code.
+
+SELECT PRO_COM AS company_code, AVG(PRO_PRICE) AS average_price FROM item_mast GROUP BY PRO_COM;

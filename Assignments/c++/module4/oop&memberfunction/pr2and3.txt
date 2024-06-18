@@ -1,0 +1,25 @@
+Q: What is OOP? List OOP concepts.
+
+Ans: OOP stands for Object-Oriented Programming.
+ Procedural programming is about writing procedures or functions that perform operations on the data,
+ while object-oriented programming is about creating objects that contain both data and functions.
+
+ List Of OOP concepts:
+
+ object
+ classes
+ data abstraction and encapsulation
+ polymorphism
+ inheritance
+ dynamic binding
+
+ Q: What is the difference between OOP and POP?
+
+ Ans:Differences Between OOP and POP is:
+
+ OOP refers to Object Oriented Programming.
+ It deals with objects and their properties. 
+ POP refers to Procedural Oriented Programming and deals with programs and functions.
+ An object-oriented program uses the bottom-up approach.
+
+

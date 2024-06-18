@@ -1,0 +1,124 @@
+4. Create table given below:
+
+mysql> create table salesperson (Sno int auto_increment primary key,Sname varchar(100),City varchar(100),Comm int );
+Query OK, 0 rows affected (0.47 sec)
+mysql> desc salesperson;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| Sno   | int          | NO   | PRI | NULL    | auto_increment |
+| Sname | varchar(100) | YES  |     | NULL    |                |
+| City  | varchar(100) | YES  |     | NULL    |                |
+| Comm  | int          | YES  |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into salesperson values(1001,"peel","london",.12);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into salesperson values(1002,"serres","san_jose",.13);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into salesperson values(1004,"motika","london",.11);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into salesperson values(1007,"rafkin","barcelona",.15);
+Query OK, 1 row affected (0.15 sec)
+
+mysql> insert into salesperson values(1003,"axelrod","new_york",.1);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> create table customer (cnn int auto_increment primary key,cname varchar(100),city varchar(100),rating int,sno int);
+Query OK, 0 rows affected (0.92 sec)
+
+mysql> update salesperson set Comm=0.13 where sno=1002;
+Query OK, 1 row affected (0.17 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update salesperson set Comm=0.10 where sno=1003;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update salesperson set Comm=0.110 where sno=1004;
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update salesperson set Comm=0.150 where sno=1007;
+Query OK, 1 row affected (0.16 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> desc customer;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| cnn    | int          | NO   | PRI | NULL    | auto_increment |
+| cname  | varchar(100) | YES  |     | NULL    |                |
+| city   | varchar(100) | YES  |     | NULL    |                |
+| rating | int          | YES  |     | NULL    |                |
+| sno    | int          | YES  |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+mysql> insert into customer values(201,"hoffman","london",100,1001);
+Query OK, 1 row affected (0.22 sec)
+mysql> insert into customer values(202,"giovanne","roe",200,1003);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into customer values(203,"liu","san_jose",300,1002);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into customer values(204,"geass","barcelona",100,1002);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into customer values(206,"clemens","london",300,1007);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into customer values(207,"pereira","roe",100,1004);
+Query OK, 1 row affected (0.12 sec)
+
+
+13.All orders for more than $1000.
+select * from CUSTOMER where RATING > 1000;
+
+14. Names and cities of all salespeople in London with commission above 0.12 
+
+mysql> select sname, city from salesperson where comm >=0.12 AND city="london";
++-------+--------+
+| sname | city   |
++-------+--------+
+| peel  | london |
++-------+--------+
+1 row in set (0.01 sec)
+
+15. All salespeople either in Barcelona or in London
+
+mysql> select * from salesperson where city="barcelona" OR city="london";
++------+--------+-----------+-------+
+| Sno  | Sname  | City      | Comm  |
++------+--------+-----------+-------+
+| 1001 | peel   | london    | 0.120 |
+| 1004 | motika | london    | 0.110 |
+| 1007 | rafkin | barcelona | 0.150 |
++------+--------+-----------+-------+
+3 rows in set (0.00 sec)
+
+16. All salespeople with commission between 0.10 and 0.12. (Boundary values
+should be excluded)
+
+mysql> select * from salesperson where comm>0.10 AND comm<0.12;
++------+--------+--------+-------+
+| Sno  | Sname  | City   | Comm  |
++------+--------+--------+-------+
+| 1004 | motika | london | 0.110 |
++------+--------+--------+-------+
+1 row in set (0.00 sec)
+
+17. All customers excluding those with rating <= 100 unless they are located in
+Rome
+
+mysql> select * from customer where rating<=100 AND city="roe";
++-----+---------+------+--------+------+
+| cnn | cname   | city | rating | sno  |
++-----+---------+------+--------+------+
+| 207 | pereira | roe  |    100 | 1004 |
++-----+---------+------+--------+------+
+1 row in set (0.00 sec)

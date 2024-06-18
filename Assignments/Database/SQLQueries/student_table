@@ -1,0 +1,9 @@
+1.	Create Table Name : Student and Exam
+
+create table student (Rollno int primary key, Name varchar(25) not null, Branch varchar(25) );
+
+select * from student;
+
+create table Exam (Rollno int primary key, S_code varchar(25) , Marks int , P_code varchar(20) , foreign key(Rollno) references Strudent(Rollno) );
+
+ select * from Exam;
